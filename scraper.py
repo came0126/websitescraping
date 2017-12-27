@@ -3,9 +3,9 @@
 import urllib2
 from bs4 import BeautifulSoup
 
-#Parses the url
+'''Parses the url
 #Keeps track of the num of images, links, and meta tags.
-#In addition to the average length of each meta tag.
+In addition to the average length of each meta tag. '''
 def parse(url):
     #Values we are keeping track of
     num_images = 0
@@ -34,15 +34,18 @@ def parse(url):
     print(url + ' has ' + str(num_links) + ' links on the landing page')
 
     #Fetch all meta tags in the current website
-    tags = soup.findAll(['meta'])
+    tags = soup.findAll(attrs={"name":"description"})
     for tag in tags:
-        #Subtract 11 for length of html formatting, about 3-8 characters off for each calculation.
-        total_meta_len += len(str(tag)) - 11
+        #Find the length of the content part in the html meta tag
+        total_meta_len += len(str(tag['content'].encode('utf-8')))
         num_meta = num_meta + 1
+
     #Print the number of meta tags
-    print(url + ' has ' + str(num_meta) + ' meta tags on the landing page')
+    print(url + ' has ' + str(num_meta) + ' meta name tags on the landing page')
     avg_meta_len = total_meta_len / num_meta
-    print(url + ' has an average meta tag length of ' + str(avg_meta_len) + ' on the landing page')
+    print(url + ' has an average meta name tag length of ' + str(avg_meta_len) + ' on the landing page')
+
+
 
 
 #Sample website to scrap
