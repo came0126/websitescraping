@@ -38,10 +38,11 @@ def parse(url):
     images.append(num_images)
 
     #Fetch all links in the current website
-    links = soup.findAll(['a'])
-    for lk in links:
+    lks = soup.findAll(['a'])
+    for lk in lks:
         num_links = num_links + 1
     links.append(num_links)
+
 
     #Fetch all meta tags in the current website
     tags = soup.findAll(attrs={"name":"description"})
@@ -84,11 +85,23 @@ print('Starting CSV creation process')
 
 with open('scrapped-results.csv', 'wb') as csv_file:
     writer = csv.writer(csv_file, delimiter=',')
-    writer.writerow(images)
+    header = ['Links', 'Images', 'Meta Name Tags', 'Avg. Meta Tag Length']
+    writer.writerow(header)
+    
+    for i in range(0, len(links)):
+        msg = []
+        msg.append(links[i])
+        try:
+            msg.append(images[i])
+            msg.append(meta_tags[i])
+            msg.append(len_tags[i])
+        except:
+            pass
+        writer.writerow(msg)
+        i += 1
 
 
 print('CSV file successfully created')
-
 print('Final results')
 
 
