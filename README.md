@@ -1,4 +1,4 @@
-# websitescraping
+# Data Scraper and Visualization
 Data Research Project from reviewing the top 500 websites.
 
 Scraping the top 500 websites from a CSV file.
