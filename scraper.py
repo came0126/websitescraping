@@ -10,9 +10,11 @@ links = []
 meta_tags = []
 len_tags = []
 
-'''Parses the url
-#Keeps track of the num of images, links, and meta tags.
-In addition to the average length of each meta tag. '''
+'''
+Parses the url
+Keeps track of the num of images, links, and meta tags.
+In addition to the average length of each meta tag
+'''
 def parse(url):
     #Values we are keeping track of
     num_images = 0
@@ -54,7 +56,7 @@ def parse(url):
         except:
             pass
     meta_tags.append(num_meta)
-
+    #Compute average
     try:
         avg_meta_len = total_meta_len / num_meta
     except:
@@ -65,7 +67,7 @@ def parse(url):
 print('Starting CSV file load process')
 sites = []
 #Load the csv file and store all websites in sites[]
-with open('top-20-websites.csv') as csvDataFile:
+with open('top-500-websites.csv') as csvDataFile:
     csvReader = csv.reader(csvDataFile)
     for row in csvReader:
         sites.append('https://www.' + row[1])
@@ -83,8 +85,10 @@ for site in sites:
 print('Sites successfully scrapped')
 print('Starting CSV creation process')
 
+#Write to csv file
 with open('scrapped-results.csv', 'wb') as csv_file:
     writer = csv.writer(csv_file, delimiter=',')
+    #Custom Header
     header = ['Links', 'Images', 'Meta Name Tags', 'Avg. Meta Tag Length']
     writer.writerow(header)
     
@@ -99,7 +103,6 @@ with open('scrapped-results.csv', 'wb') as csv_file:
             pass
         writer.writerow(msg)
         i += 1
-
 
 print('CSV file successfully created')
 print('Final results')
