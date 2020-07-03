@@ -1,10 +1,6 @@
 # Data Scraper and Visualization
-Data Research Project from reviewing the top 500 websites.
+Developed a website scraping tool in Python that parses the top 500 websites from a CSV file.
 
-Scraping the top 500 websites from a CSV file.
-While parsing the websites, the program keeps track of the number of links, number of images, number of meta name tags, 
-and the average length of each meta name tag.
-The data collection process is summerized and saved to a csv file, 'scrapped-results.csv'.
+The program keeps track of the number of links, number of images, number of meta tags, and the average length of each meta name tag. The data collection process is summarized and exported to a CSV. The data was imported into Plotly where graphs and diagrams were created to run data analysis.
 
-The data was imported into plotly where graphs and diagrams were created to analyse the data.
-These graphs are included in the analysis folder.
+The analysis folder contains the graphs and plots of the output.
